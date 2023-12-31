@@ -1,0 +1,57 @@
+<!-- <div class="sidebar">
+    <app-sidebar></app-sidebar>
+  </div>
+<div class="main-content">
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit provident ad ipsum deserunt modi reprehenderit magnam iusto nesciunt expedita quibusdam! Ullam dolorum veniam, eligendi pariatur rerum repellendus blanditiis a harum sint, minima maxime ex repellat voluptas accusamus qui sed cumque hic porro ad iusto. Veniam voluptate expedita perferendis, omnis iste dignissimos eos ex, labore odio doloribus eius quo quis. Vero pariatur dolore corrupti molestias nemo nihil odio sapiente. Aliquam vero atque debitis harum voluptatibus dolor tempore totam odio, excepturi, eos dignissimos doloremque voluptatem aperiam rerum dolorem quas veritatis esse quibusdam? Assumenda error animi vel quaerat! At architecto quaerat corrupti tempore.</p>
+</div> -->
+
+<body>
+  <div class="container-fluid">
+    <div class="row flex-nowrap">
+      <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light border-right border-3">
+        <app-sidebar *ngIf="scheduleToBook" id="sidebar" [departure]="scheduleToBook.departureStop"
+          [arrival]="scheduleToBook.arrivalStop"></app-sidebar>
+      </div>
+      <div class="col py-5">
+        <div class="row" *ngFor="let schedule of schedulesResult">
+          <div class="col pt-3">
+            <div class="card" [ngClass]="{'bg-secondary': schedule.id == scheduleToBook.id}"
+              (click)="onScheduleSelect(schedule)">
+              <div class="card-header">
+                <strong class="pr-2">{{schedule.departureStop.stopName}} ,
+                  {{schedule.departureStop.arrivalCity}}</strong>
+                ->
+                <strong class="pl-2">{{schedule.arrivalStop.stopName}} , {{schedule.arrivalStop.arrivalCity}}</strong>
+              </div>
+              <div class="card-body">
+                <p>{{schedule.bus.name}} | Available seats : <strong>{{schedule.availableSeats}}</strong></p>
+                <p>Price : <strong>{{schedule.price}}</strong></p>
+              </div>
+              <div class="card-footer bg-transparent">
+                Departure : <strong class="pr-2">{{schedule.departureDateTime}}</strong>
+                | Arrival : <strong class="pr-2">{{schedule.arrivalDateTime}}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col py-5" *ngIf="scheduleToBook">
+            <p>Selected schedule to book {{scheduleToBook.departureStop.stopName}} ,
+              {{scheduleToBook.departureStop.arrivalCity}} -> {{scheduleToBook.arrivalStop.stopName}} ,
+              {{scheduleToBook.arrivalStop.arrivalCity}} departing @{{scheduleToBook.departureDateTime}}</p>
+          </div>
+        </div>
+        <div class="input-group w-auto align-items-center">
+          <label>Number of seats :</label>
+          <input id="seats" [(ngModel)]="seatsToBook" name="quantity" type="number" step="1" min="1" max="10" value="1"
+            class="quantity-field border-0 w-80 text-center" (ngModelChange)="calculate()">
+          <p *ngIf="scheduleToBook">Ticket Price:{{ totalPrice() }} </p>
+        </div>
+        <div class="col-md-12 text-right">
+          <button type="button" class="btn btn-primary" (click)="book()">Book</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

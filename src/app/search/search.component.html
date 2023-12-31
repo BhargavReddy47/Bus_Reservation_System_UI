@@ -1,0 +1,53 @@
+<section class="intro">
+  <div class="bg-image" style="
+            background-image: url(https://mdbootstrap.com/img/Photos/new-templates/search-box/img2.jpg);">
+    <div class="mask d-flex align-items-center h-100" style="background-color: rgba(110, 140, 151, 0.1);">
+      <div class="container ">
+        <div class="card mask-custom p-4">
+          <div class="card-body">
+            <p class="h2 font-weight-bold mb-4 text-white">The Smooth Travel....</p>
+            <form (ngSubmit)="search()" class="row justify-content-center">
+              <div class="row mb-4">
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <div id="basic" class="form-outline form-white">
+                    <label class="h6 font-weight-bold mb-4 text-white" for="form1">From</label>
+                    <select id="form1" class="form-control form-control-lg" [(ngModel)]="departureStopId"
+                      name="departureStop" placeholder="Enter Departure" required (change)="onDepartureStopChange($event)">
+                      <option value="default"></option>
+                      <option *ngFor="let stop of departureStops" [ngValue]="stop.id">{{stop.stopName + ', ' + stop.arrivalCity}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <div id="location" class="form-outline form-white">
+                    <label class="h6 font-weight-bold mb-4 text-white" for="form2">To</label>
+                    <select id="form2" class="form-control form-control-lg" [(ngModel)]="arrivalStopId"
+                      name="arrivalStop" placeholder="Enter Arrival" required (change)="onArrivalStopChange($event)">
+                      <option value="default"></option>
+                      <option *ngFor="let stop of arrivalStops" [ngValue]="stop.id">{{stop.stopName + ', ' + stop.arrivalCity}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                  <div id="location" class="form-outline form-white">
+                    <label class="h6 font-weight-bold mb-4 text-white" for="form2">Date</label>
+                    <input class="form-control form-control-lg" type="date" name="departureDate" [(ngModel)]="departureDate" />
+                  </div>
+                </div>
+              </div>
+              <div class="row justify-content-end">
+                <div class="col-md-2 mb-3 mb-md-0">
+                  <div id="location" class="form-outline form-blue">
+                    <button class="btn btn-info btn-block btn-lg" type="submit" value="Search" >Search</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

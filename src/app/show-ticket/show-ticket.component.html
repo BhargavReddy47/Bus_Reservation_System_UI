@@ -1,0 +1,58 @@
+<body>
+    <div class="container pt-5">
+        <div class="row justify-content-center" *ngFor="let booking of bookings">
+            <h1 class="pl-2 pt-2">{{customer.name}}'s bookings</h1>
+
+            <article class="card align-self-center">
+                <section class="date">
+                    <time datetime="booking.schedule.departureDateTime">
+                        <span>{{getFormatedDate(booking.schedule.departureDateTime)}}</span>
+                    </time>
+                </section>
+                <section class="card-cont">
+                    <h3>
+                        <strong class="pr-2">{{booking.schedule.departureStop.stopName}} ,
+                            {{booking.schedule.departureStop.arrivalCity}}</strong>
+                        ->
+                        <strong class="pl-2">{{booking.schedule.arrivalStop.stopName}} ,
+                            {{booking.schedule.arrivalStop.arrivalCity}}</strong>
+                    </h3>
+                    <div class="even-date">
+                        <p>Departure -
+                            <i class="fa fa-calendar"></i>
+                            <time>
+                                <span>{{booking.schedule.departureDateTime}}</span>
+                            </time>
+                        </p>
+                    </div>
+                    <div class="even-date">
+                        <p>Arrival -
+                            <i class="fa fa-calendar"></i>
+                            <time>
+                                <span>{{booking.schedule.arrivalDateTime}}</span>
+                            </time>
+                        </p>
+                    </div>
+
+                    <div class="even-info">
+                        <p>
+                            Seats booked -
+                            <i class="fa fa-seat"></i>
+                        <p>
+                            {{booking.noOfSeats}}
+                        </p>
+                    </div>
+
+                    <div class="even-info">
+                        <p>
+                            Total cost -
+                            <i class="fa fa-seat"></i>
+                        <p>
+                            {{booking.amountPaid}}
+                        </p>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </div>
+</body>
